@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>MRU</h1>
+        <div>
+            <button id="velocidade">Velocidade</button>
+            <button id="tempo">Tempo</button>
+            <button id="distancia">Distância</button>
+        </div>
+    </header>
+    <main>
+        <section id="parte-I">
+            <h2>Cálculo de velocidade</h2>
+            <form>
+                <label for="velocidade_distancia">Distância percorrida em km</label><br>
+                <input type="number" id="velocidade_distancia" placeholder="Ex: 0"><br>
+
+                <label for="velocidade_tempo">Tempo que percorreu em horas</label><br>
+                <input type="number" id="velocidade_tempo" placeholder="Ex: 0"><br>
+                <p id="resposta-I"></p>
+            </form>
+            <div id="resultado-I">
+                <button type="button" id="calcular-I">Calcular</button>
+                <button id="reset-I">Redefinir</button>
+            </div>
+        </section>
+
+
+        <section id="parte-II">
+            <h2>Cálculo de tempo</h2>
+            <form>
+                <label for="tempo_distancia">Distância percorrida em km</label><br>
+                <input type="number" id="tempo_distancia" placeholder="Ex: 0"><br>
+
+                <label for="tempo_velocidade">Velocidade que percorreu km/h</label><br>
+                <input type="number" id="tempo_velocidade" placeholder="Ex: 0"><br>
+                <p id="resposta-II"></p>
+            </form>
+            <div id="resultado-II">
+                <button type="button" id="calcular-II">Calcular</button>
+                <button id="reset-II">Redefinir</button>
+            </div>
+        </section>
+
+
+        <section id="parte-III">
+            <h2>Cálculo de distância</h2>
+            <form>
+                <label for="distancia_tempo">Tempo que percorreu em horas</label><br>
+                <input type="number" id="distancia_tempo" placeholder="Ex: 0"><br>
+                <label for="distancia_velocidade">Velocidade que percorreu km/h</label><br>
+                <input type="number" id="distancia_velocidade" placeholder="Ex: 0"><br>
+                <p id="resposta-III"></p>
+            </form>
+            <div id="resultado-III">
+                <button type="button" id="calcular-III">Calcular</button>
+                <button id="reset-III">Redefinir</button>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="script.js">
+</script>
+
+</html>
