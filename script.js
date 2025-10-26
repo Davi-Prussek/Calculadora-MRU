@@ -51,9 +51,12 @@ const multiplicacao = document.getElementById("*");
 const igual = document.getElementById("=");
 const C = document.getElementById("C");
 const AC = document.getElementById("AC");
-const abre_parenteses = document.getElementById("abre-parenteses")
-const fecha_parenteses = document.getElementById("fecha-parenteses")
+const abre_parenteses = document.getElementById("abre-parenteses");
+const fecha_parenteses = document.getElementById("fecha-parenteses");
 const ponto = document.getElementById(".");
+const porcentagem = document.getElementById("%");
+const potencia = document.getElementById("potencia");
+
 //Input da calculadora
 let inputCalculadora = document.getElementById("conta-na-tela");
 
@@ -260,7 +263,6 @@ function decimal(numero) {
 
 //Função que coloca os números no input da calculadora
 function digitarNumero() {
-
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
 
@@ -304,10 +306,9 @@ function digitarNumero() {
 
 /*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
-
+  let facilitar = ["+", "-", "*", "/", ".", "(", ")", "^"];
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
-
   //Parte que coloca os símbolos no input e faz a verificação
   switch (event.target.id) {
     case "+":
@@ -316,14 +317,22 @@ function digitarSimbolo() {
     case "*":
     case ".":
       //Verifica se são dois símbolos seguidos ou não
-      if (teste[teste.length - 1] !== "+" && teste[teste.length - 1] !== "-" && teste[teste.length - 1] !== "/" && teste[teste.length - 1] && teste[teste.length - 1] !== ".") {
+      if (
+        teste[teste.length - 1] !== "+" &&
+        teste[teste.length - 1] !== "-" &&
+        teste[teste.length - 1] !== "/" &&
+        teste[teste.length - 1] &&
+        teste[teste.length - 1] !== "."
+      ) {
         inputCalculadora.value += event.target.id;
       }
-      //Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja   
-      if ((teste.length == 0) && event.target.id !== "*" && event.target.id !== "/") {
+      //Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja
+      if (
+        teste.length == 0 &&
+        event.target.id !== "*" &&
+        event.target.id !== "/"
+      ) {
         inputCalculadora.value += event.target.id;
-      } else {
-
       }
       break;
 
@@ -334,30 +343,68 @@ function digitarSimbolo() {
       inputCalculadora.value += ")";
       break;
 
-    //Parte que apaga o ultimo número
-    case "C":
-      teste.pop();
-      inputCalculadora.value = teste.join("");
-      break;
-
-    case "AC":
+      //Parte que apaga o tudo
+      case "C":
+        teste.pop();
+        inputCalculadora.value = teste.join("");
+        break;
+        
+        //Parte que apaga a ultima coisa
+      case "AC":
       inputCalculadora.value = "";
       break;
-    //Parte que coloca ponto pra números decimais
 
-    //Parte que entrega o resultado
+//Parte que coloca porcentagem no input
+    case "%":
+      if (
+        teste[teste.length - 1] !== "%" &&
+        teste.length > 0 &&
+        teste[teste.length - 1] !== "+" &&
+        teste[teste.length - 1] !== "-" &&
+        teste[teste.length - 1] !== "*" &&
+        teste[teste.length - 1] !== "/" &&
+        teste[teste.length - 1] !== "(" &&
+        teste[teste.length - 1] !== ")" &&
+        teste[teste.length - 1] !== "^"
+      ) {
+        inputCalculadora.value += "%";
+      }
+
+      break;
+ 
+//Parte que coloca potência no input
+case "potencia":
+      if (
+        teste.length > 0 &&
+        teste[teste.length - 1] !== "+" &&
+        teste[teste.length - 1] !== "-" &&
+        teste[teste.length - 1] !== "*" &&
+        teste[teste.length - 1] !== "/" &&
+        teste[teste.length - 1] !== "(" &&
+        teste[teste.length - 1] !== ")" &&
+        teste[teste.length - 1] !== "^" 
+      ) {
+inputCalculadora.value += "^";
+      }
+break;
+      //Parte que entrega o resultado
     case "=":
-
       //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
-      if ((teste[teste.length - 1] == "+" || teste[teste.length - 1] == "-" || teste[teste.length - 1] == "/" || teste[teste.length - 1] == "*") || teste[teste.length - 1] == "(") {
+      if (
+        teste[teste.length - 1] == "+" ||
+        teste[teste.length - 1] == "-" ||
+        teste[teste.length - 1] == "/" ||
+        teste[teste.length - 1] == "*" ||
+        teste[teste.length - 1] == "("
+      ) {
         teste.pop();
         inputCalculadora.value = math.evaluate(teste.join(""));
       } else {
         inputCalculadora.value = math.evaluate(teste.join(""));
       }
-
       break;
-}}
+  }
+}
 
 /*PARTE DESTINADA A COLOCAR AS FUNÇÕES NOS BOTÕES DESTINADOS A ELAS*/
 
@@ -401,4 +448,8 @@ abre_parenteses.addEventListener("click", digitarSimbolo);
 fecha_parenteses.addEventListener("click", digitarSimbolo);
 C.addEventListener("click", digitarSimbolo);
 AC.addEventListener("click", digitarSimbolo);
-ponto.addEventListener("click", digitarSimbolo)
+ponto.addEventListener("click", digitarSimbolo);
+porcentagem.addEventListener("click", digitarSimbolo);
+potencia.addEventListener("click", digitarSimbolo)
+/* inputCalculadora.addEventListener("keydown", function(event) {
+event.preventDefault();}); */
