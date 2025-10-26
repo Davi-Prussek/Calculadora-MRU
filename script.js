@@ -5,6 +5,8 @@
 const botaoAbaVel = document.getElementById("velocidade");
 const botaoAbaTem = document.getElementById("tempo");
 const botaoAbaDis = document.getElementById("distancia");
+const calculadora = document.getElementById("calculadora");
+const vazia = document.getElementById("vazia");
 
 const parte_I = document.getElementById("parte-I");
 const parte_II = document.getElementById("parte-II");
@@ -28,6 +30,30 @@ const botaoCalc_III = document.getElementById("calcular-III");
 const reset_I = document.getElementById("reset-I");
 const reset_II = document.getElementById("reset-II");
 const reset_III = document.getElementById("reset-III");
+
+//Parte que pega os ID's dos botões dos números da calculadora
+const _01 = document.getElementById("1");
+const _02 = document.getElementById("2");
+const _03 = document.getElementById("3");
+const _04 = document.getElementById("4");
+const _05 = document.getElementById("5");
+const _06 = document.getElementById("6");
+const _07 = document.getElementById("7");
+const _08 = document.getElementById("8");
+const _09 = document.getElementById("9");
+const _00 = document.getElementById("0");
+
+//Parte que pega os ID's dos botões dos símbolos básicos da calculadora
+const mais = document.getElementById("+");
+const menos = document.getElementById("-");
+const divisao = document.getElementById("/");
+const multiplicacao = document.getElementById("*");
+const igual = document.getElementById("=");
+const apagar = document.getElementById("C");
+const apagaTudo = document.getElementById("AC");
+
+//Input da calculadora
+let inputCalculadora = document.getElementById("conta-na-tela");
 
 /*==================================== ACABOU ESSA PARTE ====================================*/
 
@@ -53,18 +79,20 @@ let conta = 0;
 
 /*==================================== ACABOU ESSA PARTE ====================================*/
 
-/*====================== CRIAÇÃO DAS FUNÇÕES DOS BOTÕES E DOS CÁLCULOS ======================*/
+/*========= CRIAÇÃO DAS FUNÇÕES DOS BOTÕES E DOS CÁLCULOS QUE FAZEM ESSA TRALHA RODAR =========*/
 
 /*FUNÇÔES QUE CONTROLAM AS PÁGINAS*/
 
 //Config da parte de velocidade
 function mostrar() {
-  if (parte_I.style.display == "none") {
+  if (parte_I.style.display == "none" || vazia.style.display == "block") {
     parte_I.style.display = "block";
+    vazia.style.display = "none";
     parte_II.style.display = "none";
     parte_III.style.display = "none";
   } else {
     parte_I.style.display = "none";
+    vazia.style.display = "block";
   }
 
   if (parte_II.style.display == "block" || parte_III.style.display == "block") {
@@ -76,9 +104,11 @@ function mostrar() {
 
 //Config da parte de tempo
 function mostrar2() {
-  if (parte_II.style.display == "none") {
+  if (parte_II.style.display == "none" || vazia.style.display == "block") {
     parte_II.style.display = "block";
+    vazia.style.display = "none";
   } else {
+    vazia.style.display = "block";
     parte_II.style.display = "none";
   }
 
@@ -91,9 +121,11 @@ function mostrar2() {
 
 //Config da parte de distância
 function mostrar3() {
-  if (parte_III.style.display == "none") {
+  if (parte_III.style.display == "none" || vazia.style.display == "block") {
     parte_III.style.display = "block";
+    vazia.style.display = "none";
   } else {
+    vazia.style.display = "block";
     parte_III.style.display = "none";
   }
 
@@ -219,6 +251,80 @@ function decimal(numero) {
   }
 }
 
+/*FUNÇÕES DA CALCULADORA*/
+
+//Função que coloca os números no input da calculadora
+function digitarNumero() {
+switch (event.target.id) {
+case "1":
+inputCalculadora.value += 1;
+break;
+case "2":
+inputCalculadora.value += 2;
+break;
+case "3":
+inputCalculadora.value += 3;
+break;
+case "4":
+inputCalculadora.value += 4;
+break;
+case "5":
+inputCalculadora.value += 5;
+break;
+case "6":
+inputCalculadora.value += 6;
+break;
+case "7":
+inputCalculadora.value += 7;
+break;
+case "8":
+inputCalculadora.value += 8;
+break;
+case "9":
+inputCalculadora.value += 9;
+break;
+default:
+inputCalculadora.value += 0;
+break;}
+}
+
+/*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/ 
+function digitarSimbolo() {
+
+//Variável pra ser possivel e mais fácil manipular e verificar valores
+let teste = inputCalculadora.value.split("");
+
+//Parte que coloca os símbolos no input e faz a verificação
+switch (event.target.id) {
+case "+":
+case "-":  
+case "/":
+case "*":
+
+//Verifica se são dois símbolos seguidos ou não
+if (teste[teste.length-1] !== "+" && teste[teste.length-1] !== "-" && teste[teste.length-1] !== "/" && teste[teste.length-1] !== "*") {
+
+//Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja   
+  if (teste.length == 0 && (event.target.id !== "*" && event.target.id !== "/")) {
+    inputCalculadora.value+= event.target.id;
+  } else if (teste.length > 0) {
+    inputCalculadora.value+= event.target.id;
+  }}
+break;
+
+//Parte que entrega o resultado
+default:
+
+//Verifica se o ultimo elemento do input é um símbolo, se for, ele bloqueia de colocar mais símbolos
+if ((teste[teste.length-1] == "+" || teste[teste.length-1] == "-" || teste[teste.length-1] == "/" || teste[teste.length-1] == "*")) {
+teste.pop();
+inputCalculadora.value = math.evaluate(teste.join(""));
+} else {
+inputCalculadora.value = math.evaluate(teste.join("")); 
+}
+break;}
+}
+
 /*PARTE DESTINADA A COLOCAR AS FUNÇÕES NOS BOTÕES DESTINADOS A ELAS*/
 
 //Botões das abas
@@ -238,3 +344,22 @@ window.addEventListener("keypress", enter);
 reset_I.addEventListener("click", resetar);
 reset_II.addEventListener("click", resetar);
 reset_III.addEventListener("click", resetar);
+
+//Botões que fazem os números serem colocados no input da calculadora
+_01.addEventListener("click", digitarNumero);
+_02.addEventListener("click", digitarNumero);
+_03.addEventListener("click", digitarNumero);
+_04.addEventListener("click", digitarNumero);
+_05.addEventListener("click", digitarNumero);
+_06.addEventListener("click", digitarNumero);
+_07.addEventListener("click", digitarNumero);
+_08.addEventListener("click", digitarNumero);
+_09.addEventListener("click", digitarNumero);
+_00.addEventListener("click", digitarNumero);
+
+//Botões que fazem as equações e sistemas da calculadora funcionarem
+mais.addEventListener("click", digitarSimbolo);
+menos.addEventListener("click", digitarSimbolo);
+divisao.addEventListener("click", digitarSimbolo);
+multiplicacao.addEventListener("click", digitarSimbolo);
+igual.addEventListener("click", digitarSimbolo);

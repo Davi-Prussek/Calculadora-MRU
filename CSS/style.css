@@ -1,4 +1,4 @@
-    header {
+     header {
         padding-inline: 3vw;
         color: white;
         background-color: black;
@@ -71,7 +71,7 @@
             }
         }
             }
-            div {
+            #resultado-I,#resultado-II,#resultado-III {
                 display: flex;
                 justify-content: center;
                 gap: 2vw;
@@ -88,7 +88,7 @@
                     cursor: pointer;
                 }
 
-                #reset-I,#reset-II,#reset-III {
+                .reset, #reset-I,#reset-II,#reset-III {
                     background-color: rgb(151, 3, 3);
                     color: white;
                     border: none;

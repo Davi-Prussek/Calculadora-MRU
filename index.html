@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <header>
+<header>
         <h1>MRU</h1>
         <div>
             <button id="velocidade">Velocidade</button>
@@ -18,6 +18,51 @@
         </div>
     </header>
     <main>
+        <section id="calculadora">
+            <h2>Calculadora</h2>
+            <input id="conta-na-tela" type="text" placeholder="Ex: 1 + 1">
+            <div class="numeros">
+            <button id="1">1</button>
+            <button id="2">2</button>
+            <button id="3">3</button>
+            <button id="4">4</button>
+            <button id="5">5</button>
+            <button id="6">6</button>
+            <button id="7">7</button>
+            <button id="8">8</button>
+            <button id="9">9</button>
+            <button id="0">0</button>
+            </div>
+            <div class="simbolos">
+                <button id="+">+</button>
+                <button id="-">-</button>
+                <button id="/">&#247</button>
+                <button id="*">x</button>
+                <button id="=">=</button>
+                <button id="C">C</button>
+                <button id="AC">AC</button>
+            </div>
+            <p id="calculadora-resultado"></p>
+        </section>
+
+
+        <section id="vazia">
+            <h2 style="visibility: hidden;">Cálculo de velocidade</h2>
+            <form>
+                <label style="visibility: hidden;">Distância percorrida em km</label><br>
+                <input style="visibility: hidden;"><br>
+
+                <label style="visibility: hidden;">Tempo que percorreu em horas</label><br>
+                <input style="visibility: hidden;"><br>
+                <p style="visibility: hidden;"></p>
+            </form>
+            <div id="resultado-I">
+                <button style="visibility: hidden;">Calcular</button>
+                <button style="visibility: hidden;" id="reset-I" class="reset">Redefinir</button>
+            </div>
+        </section>
+
+
         <section id="parte-I">
             <h2>Cálculo de velocidade</h2>
             <form>
@@ -68,6 +113,7 @@
         </section>
     </main>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.min.js"></script>
 <script src="script.js">
 </script>
 
