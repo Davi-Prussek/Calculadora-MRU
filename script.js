@@ -306,9 +306,9 @@ function digitarNumero() {
 
 /*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
-  let facilitar = ["+", "-", "*", "/", ".", "(", ")", "^"];
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
+
   //Parte que coloca os símbolos no input e faz a verificação
   switch (event.target.id) {
     case "+":
@@ -343,18 +343,18 @@ function digitarSimbolo() {
       inputCalculadora.value += ")";
       break;
 
-      //Parte que apaga o tudo
-      case "C":
-        teste.pop();
-        inputCalculadora.value = teste.join("");
-        break;
-        
-        //Parte que apaga a ultima coisa
-      case "AC":
+    //Parte que apaga o tudo
+    case "C":
+      teste.pop();
+      inputCalculadora.value = teste.join("");
+      break;
+
+    //Parte que apaga a ultima coisa
+    case "AC":
       inputCalculadora.value = "";
       break;
 
-//Parte que coloca porcentagem no input
+    //Parte que coloca porcentagem no input
     case "%":
       if (
         teste[teste.length - 1] !== "%" &&
@@ -371,9 +371,9 @@ function digitarSimbolo() {
       }
 
       break;
- 
-//Parte que coloca potência no input
-case "potencia":
+
+    //Parte que coloca potência no input
+    case "potencia":
       if (
         teste.length > 0 &&
         teste[teste.length - 1] !== "+" &&
@@ -382,13 +382,50 @@ case "potencia":
         teste[teste.length - 1] !== "/" &&
         teste[teste.length - 1] !== "(" &&
         teste[teste.length - 1] !== ")" &&
-        teste[teste.length - 1] !== "^" 
+        teste[teste.length - 1] !== "^"
       ) {
-inputCalculadora.value += "^";
+        inputCalculadora.value += "^";
       }
-break;
-      //Parte que entrega o resultado
+      break;
+    //Parte que entrega o resultado
     case "=":
+      //Loops que vão verificar se os () estão todos fechados e vai fechar certinho caso estejam errados
+
+      //Variáveis pra fazer a contagem dos ()
+      let verificaAbre = 0;
+      let verificaFecha = 0;
+
+      //loop que vai contar quantos tem de cada
+      for (let item of teste) {
+        if (item == "(") {
+          verificaAbre++;
+        }
+        if (item == ")") {
+          verificaFecha++;
+        }
+      }
+
+      //Aqui ele verifica qual dos casos é:
+
+      //Se for igual a quantidade, não altera
+      if (verificaAbre == verificaFecha) {
+      }
+
+      //Se o "(" for maior, ele vai colocar ")" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
+      else if (verificaAbre > verificaFecha) {
+        for (let i = 0; i < verificaAbre - verificaFecha; i++) {
+          teste.push(")");
+          inputCalculadora.value = teste.join("");
+        }
+
+        //Se o ")" for maior, ele vai colocar "(" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
+      } else {
+        for (let i = 0; i < verificaFecha - verificaAbre; i++) {
+          teste.unshift("(");
+          inputCalculadora.value = teste.join("");
+        }
+      }
+
       //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
       if (
         teste[teste.length - 1] == "+" ||
@@ -450,6 +487,7 @@ C.addEventListener("click", digitarSimbolo);
 AC.addEventListener("click", digitarSimbolo);
 ponto.addEventListener("click", digitarSimbolo);
 porcentagem.addEventListener("click", digitarSimbolo);
-potencia.addEventListener("click", digitarSimbolo)
-/* inputCalculadora.addEventListener("keydown", function(event) {
-event.preventDefault();}); */
+potencia.addEventListener("click", digitarSimbolo);
+inputCalculadora.addEventListener("keydown", function (event) {
+  event.preventDefault();
+});
