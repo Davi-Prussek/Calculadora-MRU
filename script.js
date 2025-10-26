@@ -49,11 +49,16 @@ const menos = document.getElementById("-");
 const divisao = document.getElementById("/");
 const multiplicacao = document.getElementById("*");
 const igual = document.getElementById("=");
-const apagar = document.getElementById("C");
-const apagaTudo = document.getElementById("AC");
-
+const C = document.getElementById("C");
+const AC = document.getElementById("AC");
+const abre_parenteses = document.getElementById("abre-parenteses")
+const fecha_parenteses = document.getElementById("fecha-parenteses")
+const ponto = document.getElementById(".");
 //Input da calculadora
 let inputCalculadora = document.getElementById("conta-na-tela");
+
+//Variavel global da calculadora pra ficar mais prático
+let teste = inputCalculadora.value.split("");
 
 /*==================================== ACABOU ESSA PARTE ====================================*/
 
@@ -255,75 +260,104 @@ function decimal(numero) {
 
 //Função que coloca os números no input da calculadora
 function digitarNumero() {
-switch (event.target.id) {
-case "1":
-inputCalculadora.value += 1;
-break;
-case "2":
-inputCalculadora.value += 2;
-break;
-case "3":
-inputCalculadora.value += 3;
-break;
-case "4":
-inputCalculadora.value += 4;
-break;
-case "5":
-inputCalculadora.value += 5;
-break;
-case "6":
-inputCalculadora.value += 6;
-break;
-case "7":
-inputCalculadora.value += 7;
-break;
-case "8":
-inputCalculadora.value += 8;
-break;
-case "9":
-inputCalculadora.value += 9;
-break;
-default:
-inputCalculadora.value += 0;
-break;}
+
+  //Sempre atualizar a variável teste
+  teste = inputCalculadora.value.split("");
+
+  //Parte que coloca os números no input
+  switch (event.target.id) {
+    case "1":
+      inputCalculadora.value += 1;
+      break;
+    case "2":
+      inputCalculadora.value += 2;
+      break;
+    case "3":
+      inputCalculadora.value += 3;
+      break;
+    case "4":
+      inputCalculadora.value += 4;
+      break;
+    case "5":
+      inputCalculadora.value += 5;
+      break;
+    case "6":
+      inputCalculadora.value += 6;
+      break;
+    case "7":
+      inputCalculadora.value += 7;
+      break;
+    case "8":
+      inputCalculadora.value += 8;
+      break;
+    case "9":
+      inputCalculadora.value += 9;
+      break;
+    case "0":
+      if (teste[teste.length - 1] == "/") {
+      } else {
+        inputCalculadora.value += 0;
+      }
+      break;
+  }
 }
 
-/*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/ 
+/*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
 
-//Variável pra ser possivel e mais fácil manipular e verificar valores
-let teste = inputCalculadora.value.split("");
+  //Sempre atualizar a variável teste
+  teste = inputCalculadora.value.split("");
 
-//Parte que coloca os símbolos no input e faz a verificação
-switch (event.target.id) {
-case "+":
-case "-":  
-case "/":
-case "*":
+  //Parte que coloca os símbolos no input e faz a verificação
+  switch (event.target.id) {
+    case "+":
+    case "-":
+    case "/":
+    case "*":
+    case ".":
+      //Verifica se são dois símbolos seguidos ou não
+      if (teste[teste.length - 1] !== "+" && teste[teste.length - 1] !== "-" && teste[teste.length - 1] !== "/" && teste[teste.length - 1] && teste[teste.length - 1] !== ".") {
+        inputCalculadora.value += event.target.id;
+      }
+      //Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja   
+      if ((teste.length == 0) && event.target.id !== "*" && event.target.id !== "/") {
+        inputCalculadora.value += event.target.id;
+      } else {
 
-//Verifica se são dois símbolos seguidos ou não
-if (teste[teste.length-1] !== "+" && teste[teste.length-1] !== "-" && teste[teste.length-1] !== "/" && teste[teste.length-1] !== "*") {
+      }
+      break;
 
-//Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja   
-  if (teste.length == 0 && (event.target.id !== "*" && event.target.id !== "/")) {
-    inputCalculadora.value+= event.target.id;
-  } else if (teste.length > 0) {
-    inputCalculadora.value+= event.target.id;
-  }}
-break;
+    case "abre-parenteses":
+      inputCalculadora.value += "(";
+      break;
+    case "fecha-parenteses":
+      inputCalculadora.value += ")";
+      break;
 
-//Parte que entrega o resultado
-default:
+    //Parte que apaga o ultimo número
+    case "C":
+      teste.pop();
+      inputCalculadora.value = teste.join("");
+      break;
 
-//Verifica se o ultimo elemento do input é um símbolo, se for, ele bloqueia de colocar mais símbolos
-if ((teste[teste.length-1] == "+" || teste[teste.length-1] == "-" || teste[teste.length-1] == "/" || teste[teste.length-1] == "*")) {
-teste.pop();
-inputCalculadora.value = math.evaluate(teste.join(""));
-} else {
-inputCalculadora.value = math.evaluate(teste.join("")); 
-}
-break;}
-}
+    case "AC":
+      inputCalculadora.value = "";
+      break;
+    //Parte que coloca ponto pra números decimais
+
+    //Parte que entrega o resultado
+    case "=":
+
+      //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
+      if ((teste[teste.length - 1] == "+" || teste[teste.length - 1] == "-" || teste[teste.length - 1] == "/" || teste[teste.length - 1] == "*") || teste[teste.length - 1] == "(") {
+        teste.pop();
+        inputCalculadora.value = math.evaluate(teste.join(""));
+      } else {
+        inputCalculadora.value = math.evaluate(teste.join(""));
+      }
+
+      break;
+}}
 
 /*PARTE DESTINADA A COLOCAR AS FUNÇÕES NOS BOTÕES DESTINADOS A ELAS*/
 
@@ -363,3 +397,8 @@ menos.addEventListener("click", digitarSimbolo);
 divisao.addEventListener("click", digitarSimbolo);
 multiplicacao.addEventListener("click", digitarSimbolo);
 igual.addEventListener("click", digitarSimbolo);
+abre_parenteses.addEventListener("click", digitarSimbolo);
+fecha_parenteses.addEventListener("click", digitarSimbolo);
+C.addEventListener("click", digitarSimbolo);
+AC.addEventListener("click", digitarSimbolo);
+ponto.addEventListener("click", digitarSimbolo)
