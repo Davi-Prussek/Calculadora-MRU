@@ -30,7 +30,9 @@ const reset_I = document.getElementById("reset-I");
 const reset_II = document.getElementById("reset-II");
 const reset_III = document.getElementById("reset-III");
 
-//Parte que pega os ID's dos botões dos números da calculadora
+/* Parte que pega os ID's dos botões dos números da calculadora */
+
+//Botões de números da calculadora grande
 const _01 = document.getElementById("1");
 const _02 = document.getElementById("2");
 const _03 = document.getElementById("3");
@@ -42,6 +44,7 @@ const _08 = document.getElementById("8");
 const _09 = document.getElementById("9");
 const _00 = document.getElementById("0");
 
+//Botões de números da calculadora pequena
 const _01_pequena = document.getElementById("1-pequena");
 const _02_pequena = document.getElementById("2-pequena");
 const _03_pequena = document.getElementById("3-pequena");
@@ -53,7 +56,9 @@ const _08_pequena = document.getElementById("8-pequena");
 const _09_pequena = document.getElementById("9-pequena");
 const _00_pequena = document.getElementById("0-pequena");
 
-//Parte que pega os ID's dos botões dos símbolos básicos da calculadora
+/* Parte que pega os ID's dos botões dos símbolos básicos da calculadora */
+
+
 const mais = document.getElementById("+");
 const menos = document.getElementById("-");
 const divisao = document.getElementById("/");
@@ -297,45 +302,85 @@ function digitarNumero() {
   switch (event.target.id) {
     case "1":
     case "1-pequena":
+      if (teste[teste.length-1] == ")") {
+      inputCalculadora.value += "*";  
       inputCalculadora.value += 1;
+      } else {
+      inputCalculadora.value += 1;}
       break;
     case "2":
     case "2-pequena":
-      inputCalculadora.value += 2;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 2;  
+      } else {
+      inputCalculadora.value += 2;}
       break;
     case "3":
     case "3-pequena":
-      inputCalculadora.value += 3;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 3;  
+      } else {
+      inputCalculadora.value += 3;}
       break;
     case "4":
     case "4-pequena":
-      inputCalculadora.value += 4;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 4;  
+      } else {
+      inputCalculadora.value += 4;}
       break;
     case "5":
     case "5-pequena":
-      inputCalculadora.value += 5;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 5;  
+      } else {
+      inputCalculadora.value += 5;}
       break;
     case "6":
     case "6-pequena":
-      inputCalculadora.value += 6;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 6;  
+      } else {
+      inputCalculadora.value += 6;}
       break;
     case "7":
     case "7-pequena":
-      inputCalculadora.value += 7;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 7;  
+      } else {
+      inputCalculadora.value += 7;}
       break;
     case "8":
     case "8-pequena":
-      inputCalculadora.value += 8;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 8;  
+      } else {
+      inputCalculadora.value += 8;}
       break;
     case "9":
     case "9-pequena":
-      inputCalculadora.value += 9;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 9;  
+      } else {
+      inputCalculadora.value += 9;}
       break;
     case "0":
     case "0-pequena":
       if (teste[teste.length - 1] == "/") {
       } else {
-        inputCalculadora.value += 0;
+      if (teste[teste.length-1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 0;  
+      } else {
+      inputCalculadora.value += 0;}
       }
       break;
   }
@@ -344,36 +389,40 @@ function digitarNumero() {
 /*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
   const preguica = ["+", "-", "/", "*", "%", "(", ")", "^"];
-  
+
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
 
   //Parte que coloca os símbolos no input e faz a verificação
   switch (event.target.id) {
     case "+":
-      case "+-pequena":
-        case "-":
-      case "--pequena":
+    case "+-pequena":
+    case "-":
+    case "--pequena":
     case "/":
-      case "/-pequena":
+    case "/-pequena":
     case "*":
-      case "*-pequena":
+    case "*-pequena":
     case ".":
     case ".-pequena":
 
       //Verifica se são dois símbolos seguidos ou não
-      if (teste.length == 0 && (event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" ||event.target.id == "--pequena")) {
+      if (teste.length == 0 && (event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena")) {
         if (event.target.id.includes("-pequena")) {
-            inputCalculadora.value += event.target.id.replace("-pequena", "");
-          } else {
-            inputCalculadora.value += event.target.id;}}
+          inputCalculadora.value += event.target.id.replace("-pequena", "");
+        } else {
+          inputCalculadora.value += event.target.id;
+        }
+      }
       else if (teste.length !== 0 && (teste[teste.length - 1] !== "+" || teste[teste.length - 1] !== "-")) {
         if (!preguica.includes(teste[teste.length - 1])) {
           if (event.target.id.includes("-pequena")) {
             inputCalculadora.value += event.target.id.replace("-pequena", "");
           } else {
             inputCalculadora.value += event.target.id;
-          }}}
+          }
+        }
+      }
 
       //Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja
       if (
@@ -382,7 +431,7 @@ function digitarSimbolo() {
         event.target.id !== "/" &&
         event.target.id !== "*-pequena" &&
         event.target.id !== "/-pequena"
-      ) {inputCalculadora.value += simbolo;}
+      ) { inputCalculadora.value += simbolo; }
       break;
 
     case "abre-parenteses":
@@ -392,7 +441,8 @@ function digitarSimbolo() {
     case "fecha-parenteses":
     case "fecha-parenteses-pequena":
       if (teste.length !== 0) {
-        inputCalculadora.value += ")";}
+        inputCalculadora.value += ")";
+      }
       break;
 
     //Parte que apaga o tudo
@@ -412,7 +462,8 @@ function digitarSimbolo() {
     case "%":
     case "%":
       if (!preguica.includes(teste[teste.length - 1])) {
-        inputCalculadora.value += "%";}
+        inputCalculadora.value += "%";
+      }
       break;
 
     //Parte que coloca potência no input
@@ -428,27 +479,35 @@ function digitarSimbolo() {
         teste[teste.length - 1] !== ")" &&
         teste[teste.length - 1] !== "^"
       ) {
-        inputCalculadora.value += "^";}
+        inputCalculadora.value += "^";
+      }
       break;
     //Parte que entrega o resultado
     case "=":
     case "=-pequena":
+
+      let tamanho = 0;
       //Loops que vão verificar se os () estão todos fechados e vai fechar certinho caso estejam errados
 
       //Variáveis pra fazer a contagem dos ()
       let verificaAbre = 0;
       let verificaFecha = 0;
 
-      for (let item of teste) {
+      for (let i = 0; i < teste.length; i++) {
         if (teste[teste.length - 1] == "(") {
-          teste.pop();}}
+          teste.pop();
+          inputCalculadora.value = teste.join("");
+        }
+      }
 
       //loop que vai contar quantos tem de cada
       for (let item of teste) {
         if (item == "(") {
           verificaAbre++;
         } if (item == ")") {
-          verificaFecha++;}}
+          verificaFecha++;
+        }
+      }
 
       //Aqui ele verifica qual dos casos é:
 
@@ -456,23 +515,43 @@ function digitarSimbolo() {
       if (verificaAbre > verificaFecha) {
         for (let i = 0; i < verificaAbre - verificaFecha; i++) {
           teste.push(")");
-          inputCalculadora.value = teste.join("");}
+          inputCalculadora.value = teste.join("");
+        }
 
         //Se o ")" for maior, ele vai colocar "(" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
       } else {
         for (let i = 0; i < verificaFecha - verificaAbre; i++) {
           teste.unshift("(");
-          inputCalculadora.value = teste.join("");}}
+          inputCalculadora.value = teste.join("");
+        }
+      }
 
       //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
       if (teste[teste.length - 1] == "+" || teste[teste.length - 1] == "-" || teste[teste.length - 1] == "/" || teste[teste.length - 1] == "*" || teste[teste.length - 1] == "(" || teste[teste.length - 1] == "^") {
         if (teste[teste.length - 2] == "(") {
         } else {
           teste.pop();
-          inputCalculadora.value = math.evaluate(teste.join(""));}
+          tamanho = math.evaluate(teste.join(""));
+          if (tamanho == Infinity) {
+            inputCalculadora.value = "Valor grande demais!";
+          } else {
+            inputCalculadora.value = math.evaluate(teste.join(""));
+          }
+        }
       } else {
-        inputCalculadora.value = math.evaluate(teste.join(""));}
+        tamanho = math.evaluate(teste.join(""));
+        if (tamanho == Infinity) {
+          inputCalculadora.style.color = "red";
+          inputCalculadora.value = "Valor grande demais!";
+          setTimeout(() => {
+            inputCalculadora.style.color = "";
+            inputCalculadora.value = "";
+          }, 1000);
+        } else {
+          inputCalculadora.value = math.evaluate(teste.join(""));
+        }
       }
+  }
 }
 
 /*PARTE DESTINADA A COLOCAR AS FUNÇÕES NOS BOTÕES DESTINADOS A ELAS*/
@@ -544,4 +623,4 @@ AC_pequena.addEventListener("click", digitarSimbolo);
 ponto_pequena.addEventListener("click", digitarSimbolo);
 porcentagem_pequena.addEventListener("click", digitarSimbolo);
 potencia_pequena.addEventListener("click", digitarSimbolo);
-inputCalculadora.addEventListener("keydown", function (event) {event.preventDefault();});
+inputCalculadora.addEventListener("keydown", function (event) { event.preventDefault(); });
