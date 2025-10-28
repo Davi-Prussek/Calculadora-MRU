@@ -1,4 +1,6 @@
-     header {
+@media (min-width: 1010px) {
+    
+header {
         padding-inline: 3vw;
         color: white;
         background-color: black;
@@ -59,9 +61,12 @@
                 padding: 1vw 0.5vw;
                 font-size: 1.6vw;
             }
-
-            .organizar-maior {
+            .organizar-maior-tela-pequena {
+            display: none;
+            }
+            .organizar-maior-tela-grande {
                 button {
+                    box-shadow: 0px 0px 5px 2px rgb(205, 205, 205);
                     cursor: pointer;
                     font-size: 2vw;
                     border: none;
@@ -90,7 +95,7 @@
             width: 30%;
             padding: 1vw;
             border-radius: 0.5vw;
-            box-shadow: 0px 0px 0px 3px rgb(178, 172, 197);
+            box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
 
             h2 {
                 font-size: 3.3vw;
@@ -149,3 +154,86 @@
             font-size: 2vw;
         }
     }
+} 
+@media (max-width: 1009px) {
+header {
+        padding-inline: 3vw;
+        color: white;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 3vw;
+        padding-bottom: 3vw;
+
+        h1 {
+            font-size: 8vw;
+        }
+
+        div {
+            gap: 2.6vw;
+            display: flex;
+
+            button {
+                cursor: pointer;
+                font-size: 4.5vw;
+                border-radius: 1.7vw;
+                border: none;
+                background-color: white;
+                color: black;
+                padding: 0.5vw 1vw;
+            }
+
+        }
+    }
+main {
+        padding: 3vw 2vw 0 2vw;
+        .calculadora {
+            background-color: rgb(218, 218, 218);
+            text-align: center;
+            padding: 2vw 1vw 4vw 1vw;
+            margin: 1vw 1.5vw;
+            border-radius: 0.5vw;
+            box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
+
+            h2 {
+                font-size: 14vw;
+                margin-bottom: 2vw;
+            }
+
+            input {
+                border: none;
+                border-radius: 15px;
+                padding: 2vw 3vw;
+                font-size: 6.7vw;
+                margin-bottom: 4vw;
+            }
+            .organizar-maior-tela-grande {
+                display: none;
+            }
+            .organizar-maior-tela-pequena {
+                display: block;
+                button {
+                    box-shadow: 0px 0px 5px 2px rgb(205, 205, 205);
+                    cursor: pointer;
+                    font-size: 10vw;
+                    border: none;
+                    background-color: rgb(255, 255, 255);
+                    border-radius: 10px;
+                    width: 17vw;
+                    height: 17vw;
+                    margin: 1.3vw;
+                    box-shadow: 0px 0px 8px 2px rgb(205, 205, 205);
+                }
+            
+            .organizar {
+                width: 100%;
+                margin-top: 1.3vw;
+            } 
+                .simbolos {
+                    color: white;
+                    background-color: orangered;
+                }
+        }
+    }
+    }
+}

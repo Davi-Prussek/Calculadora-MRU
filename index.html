@@ -21,7 +21,7 @@
         <section class="calculadora">
             <h2>Calculadora</h2>
             <input id="conta-na-tela" type="text" placeholder="Ex: 1 + 1">
-            <div class="organizar-maior">
+            <div class="organizar-maior-tela-grande">
             <div class="organizar">
             <div class="numeros">   
             <button id="C" class="simbolos">C</button>
@@ -34,22 +34,53 @@
             <button id="2">2</button>
             <button id="3">3</button>
             <button id="4">4</button>
-            <button id="5">5</button>
+            <button id="potencia" class="simbolos">^</button>
             <button id="abre-parenteses" class="simbolos">(</button>
+            <button id="5">5</button>
             <button id="6">6</button>
             <button id="7">7</button>
             <button id="8">8</button>
+            <button id="%" class="simbolos" >%</button>
+            <button id="fecha-parenteses" class="simbolos">)</button>
+            <button id="">&nbsp;</button>
             <button id="9">9</button>
             <button id="0">0</button>
-            <button id="fecha-parenteses" class="simbolos">)</button>
-            <button id="potencia" class="simbolos">^</button>
-            <button id="%" class="simbolos" >%</button>
+            <button>&nbsp;</button>
             <button  id="." class="simbolos">.</button>
             <button id="=" class="simbolos">=</button>
-            </div>
+        </div>
+    </div>
+</div>
+
+<div class="organizar-maior-tela-pequena">
+    <div class="numeros">
+        <button id="C-pequena" class="simbolos">C</button>
+        <button id="AC-pequena" class="simbolos">AC</button>
+        <button id="%-pequena" class="simbolos">%</button>
+        <button id="+-pequena" class="simbolos">+</button>
+        <button id="1-pequena">1</button>
+        <button id="2-pequena">2</button>
+        <button id="3-pequena">3</button>
+        <button id="--pequena" class="simbolos">-</button>
+        <button id="4-pequena">4</button>
+        <button id="5-pequena">5</button>
+        <button id="6-pequena">6</button>
+        <button id="/-pequena" class="simbolos">&#247</button>
+        <button id="7-pequena">7</button>
+        <button id="8-pequena">8</button>
+        <button id="9-pequena">9</button>
+        <button id="*-pequena" class="simbolos">x</button>
+        <button>&nbsp;</button>
+        <button id="0-pequena">0</button>
+        <button>&nbsp;</button>
+        <button id="potencia-pequena" class="simbolos">^</button>
+        <button id="abre-parenteses-pequena" class="simbolos">(</button>
+        <button id="fecha-parenteses-pequena" class="simbolos">)</button>
+        <button  id=".-pequena" class="simbolos">.</button>
+        <button id="=-pequena" class="simbolos">=</button>
+        </div>
             </div>
         </section>
-
 
         <section id="vazia">
             <h2 style="visibility: hidden;">Cálculo de velocidade</h2>
@@ -63,10 +94,9 @@
             </form>
             <div id="resultado-I">
                 <button style="visibility: hidden;">Calcular</button>
-                <button style="visibility: hidden;" id="reset-I" class="reset">Redefinir</button>
+                <button style="visibility: hidden;" id="reset" class="reset">Redefinir</button>
             </div>
         </section>
-
 
         <section id="parte-I">
             <h2>Cálculo de velocidade</h2>
