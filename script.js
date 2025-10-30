@@ -302,85 +302,95 @@ function digitarNumero() {
   switch (event.target.id) {
     case "1":
     case "1-pequena":
-      if (teste[teste.length-1] == ")") {
-      inputCalculadora.value += "*";  
-      inputCalculadora.value += 1;
+      if (teste[teste.length - 1] == ")") {
+        inputCalculadora.value += "*";
+        inputCalculadora.value += 1;
       } else {
-      inputCalculadora.value += 1;}
+        inputCalculadora.value += 1;
+      }
       break;
     case "2":
     case "2-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 2;  
+        inputCalculadora.value += 2;
       } else {
-      inputCalculadora.value += 2;}
+        inputCalculadora.value += 2;
+      }
       break;
     case "3":
     case "3-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 3;  
+        inputCalculadora.value += 3;
       } else {
-      inputCalculadora.value += 3;}
+        inputCalculadora.value += 3;
+      }
       break;
     case "4":
     case "4-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 4;  
+        inputCalculadora.value += 4;
       } else {
-      inputCalculadora.value += 4;}
+        inputCalculadora.value += 4;
+      }
       break;
     case "5":
     case "5-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 5;  
+        inputCalculadora.value += 5;
       } else {
-      inputCalculadora.value += 5;}
+        inputCalculadora.value += 5;
+      }
       break;
     case "6":
     case "6-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 6;  
+        inputCalculadora.value += 6;
       } else {
-      inputCalculadora.value += 6;}
+        inputCalculadora.value += 6;
+      }
       break;
     case "7":
     case "7-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 7;  
+        inputCalculadora.value += 7;
       } else {
-      inputCalculadora.value += 7;}
+        inputCalculadora.value += 7;
+      }
       break;
     case "8":
     case "8-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 8;  
+        inputCalculadora.value += 8;
       } else {
-      inputCalculadora.value += 8;}
+        inputCalculadora.value += 8;
+      }
       break;
     case "9":
     case "9-pequena":
-      if (teste[teste.length-1] == ")") {
+      if (teste[teste.length - 1] == ")") {
         inputCalculadora.value += "*";
-        inputCalculadora.value += 9;  
+        inputCalculadora.value += 9;
       } else {
-      inputCalculadora.value += 9;}
+        inputCalculadora.value += 9;
+      }
       break;
     case "0":
     case "0-pequena":
       if (teste[teste.length - 1] == "/") {
       } else {
-      if (teste[teste.length-1] == ")") {
-        inputCalculadora.value += "*";
-        inputCalculadora.value += 0;  
-      } else {
-      inputCalculadora.value += 0;}
+        if (teste[teste.length - 1] == ")") {
+          inputCalculadora.value += "*";
+          inputCalculadora.value += 0;
+        } else {
+          inputCalculadora.value += 0;
+        }
       }
       break;
   }
@@ -388,7 +398,9 @@ function digitarNumero() {
 
 /*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
-  const preguica = ["+", "-", "/", "*", "%", "(", ")", "^"];
+  const preguica = ["+", "-", "/", "*", "%", "(", "^"];
+  const muitaPreguica = ["/", "*", "%", "^", "%",];
+  const numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
@@ -407,36 +419,30 @@ function digitarSimbolo() {
     case ".-pequena":
 
       //Verifica se são dois símbolos seguidos ou não
-      if (teste.length == 0 && (event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena")) {
+
+      //Inclui somente o "+" ou o "-" no começo
+      if ((!muitaPreguica.includes(teste[teste.length - 1]) && teste.length == 0 && (event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena"))) {
         if (event.target.id.includes("-pequena")) {
           inputCalculadora.value += event.target.id.replace("-pequena", "");
-        } else {
-          inputCalculadora.value += event.target.id;
-        }
-      }
-      else if (teste.length !== 0 && (teste[teste.length - 1] !== "+" || teste[teste.length - 1] !== "-")) {
-        if (!preguica.includes(teste[teste.length - 1])) {
-          if (event.target.id.includes("-pequena")) {
-            inputCalculadora.value += event.target.id.replace("-pequena", "");
-          } else {
-            inputCalculadora.value += event.target.id;
-          }
-        }
+        } else { inputCalculadora.value += event.target.id }
       }
 
-      //Verifica se o primeiro botão pressionado foi * ou / e bloqueia caso seja
-      if (
-        teste.length == 0 &&
-        event.target.id !== "*" &&
-        event.target.id !== "/" &&
-        event.target.id !== "*-pequena" &&
-        event.target.id !== "/-pequena"
-      ) { inputCalculadora.value += simbolo; }
+      else if ((teste[teste.length - 1] == "(") && event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena") {
+        if (event.target.id.includes("-pequena")) {
+          inputCalculadora.value += event.target.id.replace("-pequena", "");
+        } else { inputCalculadora.value += event.target.id }
+      }
+      else if (!preguica.includes(teste[teste.length - 1])) {
+        if (event.target.id.includes("-pequena")) {
+          inputCalculadora.value += event.target.id.replace("-pequena", "");
+        } else { inputCalculadora.value += event.target.id }
+      }
       break;
 
     case "abre-parenteses":
     case "abre-parenteses-pequena":
       inputCalculadora.value += "(";
+
       break;
     case "fecha-parenteses":
     case "fecha-parenteses-pequena":
@@ -460,8 +466,8 @@ function digitarSimbolo() {
 
     //Parte que coloca porcentagem no input
     case "%":
-    case "%":
-      if (!preguica.includes(teste[teste.length - 1])) {
+    case "%-pequena":
+      if (numeros.includes(teste[teste.length - 1])) {
         inputCalculadora.value += "%";
       }
       break;
@@ -494,10 +500,14 @@ function digitarSimbolo() {
       let verificaFecha = 0;
 
       for (let i = 0; i < teste.length; i++) {
-        if (teste[teste.length - 1] == "(") {
+
+
+
+        while (teste[teste.length - 1] == "(") {
           teste.pop();
           inputCalculadora.value = teste.join("");
         }
+        inputCalculadora.value = teste.join("");
       }
 
       //loop que vai contar quantos tem de cada
@@ -526,16 +536,24 @@ function digitarSimbolo() {
         }
       }
 
+      for (let i = 0; i < teste.length; i++) {
+        if (teste[i] == "(" && teste[i + 1] == ")") {
+          teste[i] = "";
+          teste[i + 1] = "";
+        }
+      }
+
       //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
-      if (teste[teste.length - 1] == "+" || teste[teste.length - 1] == "-" || teste[teste.length - 1] == "/" || teste[teste.length - 1] == "*" || teste[teste.length - 1] == "(" || teste[teste.length - 1] == "^") {
-        if (teste[teste.length - 2] == "(") {
+      if (preguica.includes(teste[teste.length - 1])) {
+        teste.pop();
+        if (tamanho == Infinity) {
+          inputCalculadora.value = "Valor grande demais!";
         } else {
-          teste.pop();
-          tamanho = math.evaluate(teste.join(""));
-          if (tamanho == Infinity) {
-            inputCalculadora.value = "Valor grande demais!";
-          } else {
-            inputCalculadora.value = math.evaluate(teste.join(""));
+          for (let i = 0; i < teste.length; i++) {
+            if (teste[i] == "%") {
+              teste[i] = "/100*";
+            };
+            inputCalculadora.value = teste.join("");
           }
         }
       } else {
@@ -548,7 +566,12 @@ function digitarSimbolo() {
             inputCalculadora.value = "";
           }, 1000);
         } else {
-          inputCalculadora.value = math.evaluate(teste.join(""));
+          for (let i = 0; i < teste.length; i++) {
+            if (teste[i] == "%") {
+              teste[i] = "/100*";
+            };
+            inputCalculadora.value = math.evaluate(teste.join(""));
+          }
         }
       }
   }
