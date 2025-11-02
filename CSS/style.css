@@ -1,4 +1,5 @@
 :root {
+    scrollbar-width: none;
     background-color: #2E2E2E;
 }
 @media (min-width: 1010px) {
@@ -11,7 +12,7 @@
             left: 0px;
             height: 100%;
             width: 30%;
-            background-color: rgb(2, 8, 36);
+            background: radial-gradient(rgb(7, 19, 69),rgb(2, 8, 36));
             padding-top: 1vw;
             div {
                 h2 {
@@ -52,7 +53,7 @@
         z-index: 2;
         padding-inline: 3vw;
         color: white;
-        background-color: rgb(2, 12, 50);
+        background-color: rgb(2, 8, 36);
         display: flex;
         justify-content: space-between;
         padding-bottom: 1vw;
@@ -254,30 +255,75 @@
 
 @media (max-width: 1009px) {
     header {
+        #parte-historico {  
+            box-shadow: 10px 0px 30vw 10px black;
+            overflow-y: auto;
+            scrollbar-width: none;
+            z-index: 3;
+            position:fixed;
+            left: 0px;
+            height: 100%;
+            width: 70%;
+            background: radial-gradient(rgb(7, 19, 69),rgb(2, 8, 36));
+            padding-top: 1vw;
+            div {
+                h2 {
+                padding: 0 2vw;
+                text-align: left;
+                width: 100%;
+                font-size: 9vw;
+            }
+            button {
+                margin-right: 1vw;
+                img {
+                    width: 9vw;
+                }
+            }
+        }
+            ul {
+                    width: 100%;
+                    margin-top: 1vw;
+                    li {
+                        margin-bottom: 0.7vw;
+                        padding: 0.6vw;
+                        font-size: 6VW;
+                        border-radius: 10px;
+                        color: rgb(178, 178, 178);
+                        p {
+                            font-size: 8vw;
+                            margin-top: 0.3vw;
+                            margin-left: 0.5vw;
+                            color: white;
+                        }
+                    }
+                    li:hover {
+                        background-color:rgb(46, 49, 63);
+                    }
+                }
+        }
         padding-inline: 3vw;
         color: white;
-        background-color: black;
+        background-color: rgb(2, 8, 36);
         display: flex;
         justify-content: space-between;
-        padding-top: 3vw;
         padding-bottom: 3vw;
 
         h1 {
+            padding-top: 3vw;
             font-size: 8vw;
         }
 
         div {
+            padding-top: 3vw;
             gap: 2.6vw;
             display: flex;
 
             button {
                 cursor: pointer;
                 font-size: 4.5vw;
-                border-radius: 1.7vw;
+                background-color: transparent;
                 border: none;
-                background-color: white;
-                color: black;
-                padding: 0.5vw 1vw;
+                color: white;
             }
 
         }
@@ -305,23 +351,24 @@
                 }
             }
 
-            background-color: rgb(218, 218, 218);
             text-align: center;
             padding: 2vw 1vw 4vw 1vw;
             margin: 1vw 1.5vw;
-            border-radius: 0.5vw;
-            box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
+            margin-bottom: 4vw;
+            border-radius: 3vw;
+            background: radial-gradient(#151a3e,#101430,#111429);
 
             h2 {
                 font-size: 11vw;
                 margin-bottom: 2vw;
+                color: white;
             }
 
             input {
                 border: none;
                 border-radius: 15px;
                 padding: 2vw 3vw;
-                font-size: 6.7vw;
+                font-size: 6.3vw;
                 margin-bottom: 4vw;
             }
 
@@ -333,16 +380,15 @@
                 display: block;
 
                 button {
-                    box-shadow: 0px 0px 5px 2px rgb(205, 205, 205);
                     cursor: pointer;
                     font-size: 10vw;
                     border: none;
-                    background-color: rgb(255, 255, 255);
+                    background-color: rgb(81, 79, 79);
                     border-radius: 10px;
                     width: 17vw;
                     height: 17vw;
                     margin: 1.3vw;
-                    box-shadow: 0px 0px 8px 2px rgb(205, 205, 205);
+                    color: white;
                 }
 
                 .organizar {
@@ -355,6 +401,84 @@
                     background-color: orangered;
                 }
             }
+        }
+        #vazia {display: none;}
+
+        #parte-I,
+        #parte-II,
+        #parte-III{
+            background: radial-gradient(#151a3e,#101430,#111429);
+            text-align: center;
+            padding: 2vw 1vw 4vw 1vw;
+            margin: 1vw 1.5vw;
+            border-radius: 3vw;
+            height: 100vw;
+            position: relative;
+
+            h2 {
+                color: white;
+                font-size: 8vw;
+                margin: 2vw 0 4vw 0;
+            }
+            label {
+                color: white;
+                font-size: 6vw;
+            }
+            input {
+                margin-top: 2vw;
+                margin-bottom: 6vw; 
+                border: none;
+                width: 70vw;
+                font-size: 4vw;
+                padding: 2vw 3vw;
+                border-radius: 35px;
+            }
+            p {
+                color: white;
+                font-size: 6.5vw;
+                margin: 0 10vw;
+            }
+        
+        #resultado-I,
+        #resultado-II,
+        #resultado-III {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+            text-align: center;
+
+            #calcular-I,
+            #calcular-II,
+            #calcular-III {
+                background-color: rgb(0, 139, 42);
+                color: white;
+                border: none;
+                margin-top: 2vw;
+                font-size: 6vw;
+                border-radius: 0.5vw;
+                padding: 1.5vw 4vw;
+                cursor: pointer;
+                position: absolute;
+                left: 7vw;
+                bottom: 4vw;
+            }
+
+            #reset-I,
+            #reset-II,
+            #reset-III {
+                background-color: rgb(151, 3, 3);
+                color: white;
+                border: none;
+                margin-top: 2vw;
+                font-size: 6vw;
+                border-radius: 0.5vw;
+                padding: 1.5vw 4vw;
+                cursor: pointer;
+                position: absolute;
+                right: 7vw;
+                bottom: 4vw;
+            }
+        }
         }
     }
 }   
