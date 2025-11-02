@@ -1,1 +1,1 @@
-# PENSA NUM CÓDIGO DE MACACO, ENTÃO, É ESSE. EM UM NÍVEL DE BATER PEDRA COM PEDRA PRA ESCREVER O CÓDIGO.
+## Calculadora que calcula MRU com calculadora convencional embutida
