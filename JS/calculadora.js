@@ -69,7 +69,7 @@ const divHistorico = document.getElementById("parte-historico");
 const botaoHistorico = document.getElementById("mostrarHistorico");
 divHistorico.style.display = "none";
 
-
+let salvar = "";
 /*FUNÇÕES DA CALCULADORA*/
 
 //Função que coloca os números no input da calculadora
@@ -180,7 +180,7 @@ function createHistory() {
   if (inputCalculadora.value !== "") {
   let novoItem = document.createElement("li");
   let resposta = document.createElement("p");
-  novoItem.innerText = inputCalculadora.value+" =";
+  novoItem.innerText = salvar.value+" =";
   resposta.innerText = inputCalculadora.value = math.evaluate(teste.join(""));
   document.getElementById("historico").appendChild(novoItem);
   novoItem.appendChild(resposta);
@@ -287,7 +287,7 @@ function digitarSimbolo() {
     //Parte que entrega o resultado
     case "=":
     case "=-pequena":
-
+try {
       let tamanho = inputCalculadora.value;
       //Loops que vão verificar se os () estão todos fechados e vai fechar certinho caso estejam errados
 
@@ -375,8 +375,9 @@ verificaParenteses();
             };
             verificaParenteses();
           }
-            createHistory();
             if (inputCalculadora.value !== "") {
+              salvar = inputCalculadora;
+              createHistory();
               inputCalculadora.value = math.evaluate(teste.join(""));
             } else {
               inputCalculadora.value = "Insira algum valor!";
@@ -388,7 +389,15 @@ verificaParenteses();
             }
         }
       }
+  } catch {
+    inputCalculadora.value = "Escreva direito, por favor!";
+    inputCalculadora.style.color = "red";
+    setTimeout(() => {
+    inputCalculadora.value = "";
+    inputCalculadora.style.color = "";
+    }, 1000);
   }
+}
 }
 
 //Função que abre e fecha a parte do histórico
