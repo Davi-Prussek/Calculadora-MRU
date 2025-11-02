@@ -1,19 +1,69 @@
+:root {
+    background-color: #2E2E2E;
+}
 @media (min-width: 1010px) {
-    
-header {
+    header {
+        #parte-historico {  
+            overflow-y: auto;
+            scrollbar-width: none;
+            z-index: 3;
+            position:fixed;
+            left: 0px;
+            height: 100%;
+            width: 30%;
+            background-color: rgb(2, 8, 36);
+            padding-top: 1vw;
+            div {
+                h2 {
+                padding: 0 2vw;
+                text-align: left;
+                width: 100%;
+                font-size: 3vw;
+            }
+            button {
+                margin-right: 1vw;
+                img {
+                    width: 3vw;
+                }
+            }
+        }
+            ul {
+                    width: 100%;
+                    margin-top: 1vw;
+                    li {
+                        margin-bottom: 0.7vw;
+                        padding: 0.6vw;
+                        font-size: 2.3VW;
+                        border-radius: 10px;
+                        color: rgb(178, 178, 178);
+                        p {
+                            font-size: 2vw;
+                            margin-top: 0.3vw;
+                            margin-left: 0.5vw;
+                            color: white;
+                        }
+                    }
+                    li:hover {
+                        background-color:rgb(46, 49, 63);
+                    }
+                }
+        }
+        
+        z-index: 2;
         padding-inline: 3vw;
         color: white;
-        background-color: black;
+        background-color: rgb(2, 12, 50);
         display: flex;
         justify-content: space-between;
-        padding-top: 1vw;
         padding-bottom: 1vw;
 
         h1 {
+            padding-top: 1vw;
             font-size: 3vw;
         }
 
         div {
+            padding-top: 1vw;
             gap: 2vw;
             display: flex;
 
@@ -22,141 +72,188 @@ header {
                 font-size: 2vw;
                 border-radius: 0.5vw;
                 border: none;
-                background-color: white;
-                color: black;
+                background-color: transparent;
+                color: rgb(255, 255, 255);
                 padding: 0.5vw 0.8vw;
                 transition: 0.3s ease;
-            }
-
-            button:hover {
-                box-shadow: 0px 0px 5px 5px rgb(97, 97, 97);
             }
         }
     }
 
     main {
-        padding-top: 3vw;
+        z-index: 1;
+        padding-top: 1.5vw;
         display: flex;
         width: 100%;
         justify-content: space-around;
 
+        section {
+         box-shadow: 0px 0px 15px 3px rgb(30, 30, 32);
+            background: radial-gradient(#151a3e,#101430,#111429);
+        }
         .calculadora {
-            background-color: rgb(218, 218, 218);
+            .titulo-calc {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.3vw 0.5vw;
+                align-items: center;
+
+                button {
+                    border: none;
+                    background-color: transparent;
+                    height: fit-content;
+
+                    img {
+                        width: 2vw;
+                        cursor: pointer;
+                    }
+                }
+            }
+
             height: fit-content;
             text-align: center;
             width: 30%;
             padding: 1vw 1vw 1vw 1vw;
             border-radius: 0.5vw;
-            box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
 
             h2 {
                 font-size: 3.3vw;
                 margin-bottom: 0.3vw;
+                color: white;
             }
 
             input {
                 width: 95%;
-                border: none;
+                border: 3px solid white;
                 border-radius: 15px;
                 padding: 1vw 0.5vw;
                 font-size: 1.6vw;
+                color: white;
+                background-color: transparent;
             }
+
             .organizar-maior-tela-pequena {
-            display: none;
+                display: none;
             }
+
             .organizar-maior-tela-grande {
                 button {
-                    box-shadow: 0px 0px 5px 2px rgb(205, 205, 205);
                     cursor: pointer;
                     font-size: 2vw;
                     border: none;
-                    background-color: rgb(255, 255, 255);
+                    background-color: rgb(81, 79, 79);
+                    color: white;
                     border-radius: 10px;
                     width: 4vw;
                     height: 3vw;
                     margin: 0.35vw;
                 }
-            
-            .organizar {
-                width: 100%;
-                margin-top: 1.3vw;
 
-                .simbolos {
-                    color: white;
-                    background-color: orangered;
+                .organizar {
+                    width: 100%;
+                    margin-top: 1.3vw;
+
+                    .simbolos {
+                        color: white;
+                        background-color: rgb(244, 73, 35);
+                    }
                 }
-            } 
+            }
         }
-    }
-        #parte-I,#parte-II,#parte-III,#vazia {
-            background-color: rgb(218, 218, 218);
+
+        #parte-I,
+        #parte-II,
+        #parte-III,
+        #vazia {
+            position: relative;
             height: fit-content;
             text-align: center;
             width: 30%;
+            height: 36vw;
             padding: 1vw;
             border-radius: 0.5vw;
-            box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
 
             h2 {
                 font-size: 3.3vw;
-                margin-bottom: 2vw;
+                margin-bottom: 1vw;
+                color: white;
             }
 
             form {
                 display: grid;
                 gap: 0.10vw;
                 justify-content: center;
-                padding: 3vw;
-            label {
-                font-size: 1.9vw;
+                padding: 1vw;
+
+                label {
+                    font-size: 1.9vw;
+                    color: white;
                 }
-            input {
-                padding: 0.4vw;
-                font-size: 1.2vw;
-                width: 100%;
-                height: 1.5vw;
-                border-radius: 20px;
-                border: none;
-                background-color: rgb(255, 255, 255);
+
+                input {
+                    padding: 0.4vw;
+                    font-size: 1.2vw;
+                    width: 100%;
+                    height: 2.8vw;
+                    border-radius: 25px;
+                    border: none;
+                    background-color: rgb(255, 255, 255);
+                }
             }
         }
-            }
-            #resultado-I,#resultado-II,#resultado-III {
-                display: flex;
-                justify-content: center;
-                gap: 2vw;
-                text-align: center;
 
-                #calcular-I,#calcular-II,#calcular-III {
-                    background-color: rgb(0, 139, 42);
-                    color: white;
-                    border: none;
-                    margin-top: 2vw;
-                    font-size: 2vw;
-                    border-radius: 0.5vw;
-                    padding: 0.4vw 0.6vw;
-                    cursor: pointer;
-                }
+        #resultado-I,
+        #resultado-II,
+        #resultado-III {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+            text-align: center;
 
-                .reset, #reset-I,#reset-II,#reset-III {
-                    background-color: rgb(151, 3, 3);
-                    color: white;
-                    border: none;
-                    margin-top: 2vw;
-                    font-size: 2vw;
-                    border-radius: 0.5vw;
-                    padding: 0.4vw 0.6vw;
-                    cursor: pointer;
-                }
+            #calcular-I,
+            #calcular-II,
+            #calcular-III {
+                background-color: rgb(0, 139, 42);
+                color: white;
+                border: none;
+                margin-top: 2vw;
+                font-size: 2vw;
+                border-radius: 0.5vw;
+                padding: 0.4vw 0.6vw;
+                cursor: pointer;
+                position: absolute;
+                left: 5.5vw;
+                bottom: 2vw;
             }
+
+            .reset,
+            #reset-I,
+            #reset-II,
+            #reset-III {
+                background-color: rgb(151, 3, 3);
+                color: white;
+                border: none;
+                margin-top: 2vw;
+                font-size: 2vw;
+                border-radius: 0.5vw;
+                padding: 0.4vw 0.6vw;
+                cursor: pointer;
+                position: absolute;
+                right: 5.5vw;
+                bottom: 2vw;
+            }
+        }
+
         p {
             padding: 2vw;
             font-size: 2vw;
-        }
+            color: white;
+           }
     }
-} 
+}
+
 @media (max-width: 1009px) {
-header {
+    header {
         padding-inline: 3vw;
         color: white;
         background-color: black;
@@ -185,9 +282,29 @@ header {
 
         }
     }
-main {
+
+    main {
         padding: 3vw 2vw 0 2vw;
+
         .calculadora {
+            .titulo-calc {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.3vw 0.5vw;
+                align-items: center;
+
+                button {
+                    border: none;
+                    background-color: transparent;
+                    height: fit-content;
+
+                    img {
+                        width: 9vw;
+                        cursor: pointer;
+                    }
+                }
+            }
+
             background-color: rgb(218, 218, 218);
             text-align: center;
             padding: 2vw 1vw 4vw 1vw;
@@ -196,7 +313,7 @@ main {
             box-shadow: 0px 0px 30px 3px rgb(178, 172, 197);
 
             h2 {
-                font-size: 14vw;
+                font-size: 11vw;
                 margin-bottom: 2vw;
             }
 
@@ -207,11 +324,14 @@ main {
                 font-size: 6.7vw;
                 margin-bottom: 4vw;
             }
+
             .organizar-maior-tela-grande {
                 display: none;
             }
+
             .organizar-maior-tela-pequena {
                 display: block;
+
                 button {
                     box-shadow: 0px 0px 5px 2px rgb(205, 205, 205);
                     cursor: pointer;
@@ -224,16 +344,17 @@ main {
                     margin: 1.3vw;
                     box-shadow: 0px 0px 8px 2px rgb(205, 205, 205);
                 }
-            
-            .organizar {
-                width: 100%;
-                margin-top: 1.3vw;
-            } 
+
+                .organizar {
+                    width: 100%;
+                    margin-top: 1.3vw;
+                }
+
                 .simbolos {
                     color: white;
                     background-color: orangered;
                 }
+            }
         }
     }
-    }
-}
+}   

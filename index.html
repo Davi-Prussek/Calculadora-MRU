@@ -16,10 +16,21 @@
             <button id="tempo">Tempo</button>
             <button id="distancia">Distância</button>
         </div>
+    <div id="parte-historico">
+        <div>
+        <h2>Histórico</h2>
+        <button id="apagar-historico"><img src="src/img/icon/lixo.svg" alt="lixo/icon"></button>
+        </div>
+        <ul id="historico" class="historico">
+    </ul>
+    </div>
     </header>
     <main>
         <section class="calculadora">
+            <div class="titulo-calc">
             <h2>Calculadora</h2>
+            <button id="mostrarHistorico"><img src="src/img/icon/historico-icon.svg" alt="history/icon"></button>
+            </div>
             <input id="conta-na-tela" type="text" placeholder="Ex: 1 + 1">
             <div class="organizar-maior-tela-grande">
             <div class="organizar">
@@ -51,7 +62,6 @@
         </div>
     </div>
 </div>
-
 <div class="organizar-maior-tela-pequena">
     <div class="numeros">
         <button id="C-pequena" class="simbolos">C</button>
@@ -102,11 +112,11 @@
             <h2>Cálculo de velocidade</h2>
             <form>
                 <label for="velocidade_distancia">Distância percorrida em km</label><br>
-                <input type="number" id="velocidade_distancia" placeholder="Ex: 0"><br>
+                <input type="number" id="velocidade_distancia" placeholder="Ex: 1"><br>
 
                 <label for="velocidade_tempo">Tempo que percorreu em horas</label><br>
-                <input type="number" id="velocidade_tempo" placeholder="Ex: 0"><br>
-                <p id="resposta-I"></p>
+                <input type="number" id="velocidade_tempo" placeholder="Ex: 1"><br>
+                <p id="resposta-I"><br><br> </p>
             </form>
             <div id="resultado-I">
                 <button type="button" id="calcular-I">Calcular</button>
@@ -114,15 +124,14 @@
             </div>
         </section>
 
-
         <section id="parte-II">
             <h2>Cálculo de tempo</h2>
             <form>
                 <label for="tempo_distancia">Distância percorrida em km</label><br>
-                <input type="number" id="tempo_distancia" placeholder="Ex: 0"><br>
+                <input type="number" id="tempo_distancia" placeholder="Ex: 1"><br>
 
                 <label for="tempo_velocidade">Velocidade que percorreu km/h</label><br>
-                <input type="number" id="tempo_velocidade" placeholder="Ex: 0"><br>
+                <input type="number" id="tempo_velocidade" placeholder="Ex: 1"><br>
                 <p id="resposta-II"></p>
             </form>
             <div id="resultado-II">
@@ -131,14 +140,13 @@
             </div>
         </section>
 
-
         <section id="parte-III">
             <h2>Cálculo de distância</h2>
             <form>
                 <label for="distancia_tempo">Tempo que percorreu em horas</label><br>
-                <input type="number" id="distancia_tempo" placeholder="Ex: 0"><br>
+                <input type="number" id="distancia_tempo" placeholder="Ex: 1"><br>
                 <label for="distancia_velocidade">Velocidade que percorreu km/h</label><br>
-                <input type="number" id="distancia_velocidade" placeholder="Ex: 0"><br>
+                <input type="number" id="distancia_velocidade" placeholder="Ex: 1"><br>
                 <p id="resposta-III"></p>
             </form>
             <div id="resultado-III">
@@ -149,7 +157,6 @@
     </main>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.min.js"></script>
-<script src="script.js">
-</script>
-
+<script src="JS/MRU.js"></script>
+<script src="JS/calculadora.js"></script>
 </html>
