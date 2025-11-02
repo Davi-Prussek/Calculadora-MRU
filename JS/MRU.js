@@ -163,6 +163,10 @@ function calc_vel() {
   } else {
     res_I.style.color = "red";
     res_I.innerHTML = vazio;
+    setTimeout(() => {
+    res_I.style.color = "";
+    res_I.innerHTML = "";  
+    }, 1200);
   }
 }
 
@@ -191,6 +195,10 @@ function calc_tem() {
   } else {
     res_II.style.color = "red";
     res_II.innerHTML = vazio;
+    setTimeout(() => {
+    res_II.style.color = "";
+    res_II.innerHTML = "";  
+    }, 1200);
   }
 }
 
@@ -210,6 +218,10 @@ function calc_distancia() {
   } else {
     res_III.style.color = "red";
     res_III.innerHTML = vazio;
+    setTimeout(() => {
+    res_III.style.color = "";
+    res_III.innerHTML = "";  
+    }, 1200);
   }
 }
 
