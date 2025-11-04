@@ -224,7 +224,7 @@
                 cursor: pointer;
                 position: absolute;
                 left: 5.5vw;
-                bottom: 2vw;
+                bottom: 1vw;
             }
 
             .reset,
@@ -241,7 +241,7 @@
                 cursor: pointer;
                 position: absolute;
                 right: 5.5vw;
-                bottom: 2vw;
+                bottom: 1vw;
             }
         }
 
@@ -481,4 +481,4 @@
         }
         }
     }
-}   
+}

@@ -47,7 +47,7 @@ let dis_tem = document.getElementById("distancia_tempo");
 let dis_vel = document.getElementById("distancia_velocidade");
 
 //Criação global da variável de mensagem vazia
-const vazio = "Preencha todos os campos!";
+const vazio = "Preencha todos os campos corretamente!";
 
 //Variável principal dos cálculos
 let conta = 0;
@@ -150,24 +150,23 @@ function calc_vel() {
   let vel_tem = document.getElementById("velocidade_tempo").value;
 
   conta = vel_dis / vel_tem;
-  if (vel_dis !== "" && vel_tem !== "") {
+  if (vel_dis > 0 && vel_tem > 0) {
+      if (conta == Infinity) {
+    res_I.style.color = "red";
+    res_I.innerHTML = vazio;
+    setTimeout(()=>{res_I.style.color="";res_I.innerHTML=""},1200)} else {
     res_I.style.color = "";
     if (decimal(conta) == 0) {
       res_I.innerHTML = "A velocidade constante durante o percurso foi de " + conta + "km/h";
     } else if (decimal(conta) < 2) {
       res_I.innerHTML = "A velocidade constante durante o percurso foi de " + conta + "km/h";
-    }
-    else {
-      res_I.innerHTML = "A velocidade constante durante o percurso foi de " + conta.toFixed(2) + "km/h";
-    }
+    } else {res_I.innerHTML = "A velocidade constante durante o percurso foi de " + conta.toFixed(2) + "km/h";}  
+  }
+
   } else {
     res_I.style.color = "red";
     res_I.innerHTML = vazio;
-    setTimeout(() => {
-    res_I.style.color = "";
-    res_I.innerHTML = "";  
-    }, 1200);
-  }
+    setTimeout(()=>{res_I.style.color="";res_I.innerHTML="";},1200);}
 }
 
 //Cálcula e entrega o resultado da conta de tempo
@@ -176,7 +175,11 @@ function calc_tem() {
   let tem_vel = document.getElementById("tempo_velocidade").value;
 
   conta = tem_dis / tem_vel;
-  if (tem_dis !== "" && tem_vel !== "" && tem_dis !== "0" && tem_vel !== "0") {
+  if (tem_dis > 0 && tem_vel > 0) {
+    if (conta == Infinity) {
+    res_II.style.color = "red";
+    res_II.innerHTML = vazio;
+    setTimeout(()=>{res_II.style.color="";res_II.innerHTML=""},1200)} else {
     res_II.style.color = "";
     if (decimal(conta) == 0) {
       if (conta == 1) {
@@ -191,7 +194,7 @@ function calc_tem() {
       res_II.innerHTML = "Somente valores maiores que zero!";
     } else {
       res_II.innerHTML = "Com a velocidade constante de " + tem_vel + "km/h vai demorar " + conta.toFixed(2) + " horas";
-    }
+    }}
   } else {
     res_II.style.color = "red";
     res_II.innerHTML = vazio;
@@ -208,20 +211,20 @@ function calc_distancia() {
   let dis_vel = document.getElementById("distancia_velocidade").value;
 
   conta = dis_vel * dis_tem;
-  if (dis_tem !== "" && dis_vel !== "" && dis_tem !== "0" && dis_vel !== "0") {
-    res_III.style.color = "";
-    if (decimal(conta) == 0) {
-      res_III.innerHTML = "A distância percorrida vai ser de " + conta + "km levando em conta a velocidade constante de " + dis_vel + "km/h";
-    } else {
-      res_III.innerHTML = "A distância percorrida vai ser de " + conta.toFixed(2) + "km levando em conta a velocidade constante de " + dis_vel + "km/h";
-    }
-  } else {
+  if (dis_tem > 0 && dis_vel > 0) {
+    if (conta == Infinity) {
     res_III.style.color = "red";
     res_III.innerHTML = vazio;
-    setTimeout(() => {
-    res_III.style.color = "";
-    res_III.innerHTML = "";  
-    }, 1200);
+    setTimeout(()=>{res_III.style.color="";res_III.innerHTML=""},1200)} else {
+      res_III.style.color = "";
+      if (decimal(conta) == 0) {
+        res_III.innerHTML = "A distância percorrida vai ser de " + conta + "km levando em conta a velocidade constante de " + dis_vel + "km/h";
+      } else {
+        res_III.innerHTML = "A distância percorrida vai ser de " + conta.toFixed(2) + "km levando em conta a velocidade constante de " + dis_vel + "km/h";}}
+      } else {
+    res_III.style.color = "red";
+    res_III.innerHTML = vazio;
+    setTimeout(()=>{res_III.style.color="";res_III.innerHTML="";},1200);
   }
 }
 

@@ -178,61 +178,47 @@ function digitarNumero() {
 //Função que vai criando o histórico
 function createHistory() {
   if (inputCalculadora.value !== "") {
-  let novoItem = document.createElement("li");
-  let resposta = document.createElement("p");
-  novoItem.innerText = salvar.value+" =";
-  resposta.innerText = inputCalculadora.value = math.evaluate(teste.join(""));
-  document.getElementById("historico").appendChild(novoItem);
-  novoItem.appendChild(resposta);
-}}
+    let novoItem = document.createElement("li");
+    let resposta = document.createElement("p");
+    novoItem.innerText = salvar.value + " =";
+    resposta.innerText = inputCalculadora.value = math.evaluate(teste.join(""));
+    document.getElementById("historico").appendChild(novoItem);
+    novoItem.appendChild(resposta);
+  }
+}
 
 //Função que apaga o histórico inteiro
 function apagarHistorico() {
-const ul = document.getElementById("historico");
-ul . innerHTML = "";
+  const ul = document.getElementById("historico");
+  ul.innerHTML = "";
 }
 
 /*Função que coloca os símbolos no imput da calculadora e diz o resultado da equação e faz o sistema funcionar*/
 function digitarSimbolo() {
-  const preguica = ["+", "-", "/", "*", "%", "(", "^"];
-  const muitaPreguica = ["/", "*", "%", "^", "%",];
+  const preguica = ["+", "-", "/", "*", "%", "(", "^", "."];
+  const muitaPreguica = ["/", "*", "%", "^", "%", "."];
   const numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+  let simbolo = event.target.id.replace("-pequena", "");
   //Sempre atualizar a variável teste
   teste = inputCalculadora.value.split("");
-
   //Parte que coloca os símbolos no input e faz a verificação
-  switch (event.target.id) {
+  switch (simbolo) {
     case "+":
-    case "+-pequena":
     case "-":
-    case "--pequena":
     case "/":
-    case "/-pequena":
     case "*":
-    case "*-pequena":
     case ".":
-    case ".-pequena":
 
       //Verifica se são dois símbolos seguidos ou não
 
       //Inclui somente o "+" ou o "-" no começo
-      if ((!muitaPreguica.includes(teste[teste.length - 1]) && teste.length == 0 && (event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena"))) {
-        if (event.target.id.includes("-pequena")) {
-          inputCalculadora.value += event.target.id.replace("-pequena", "");
-        } else { inputCalculadora.value += event.target.id }
-      }
-
-      else if ((teste[teste.length - 1] == "(") && event.target.id == "+" || event.target.id == "+-pequena" || event.target.id == "-" || event.target.id == "--pequena") {
-        if (event.target.id.includes("-pequena")) {
-          inputCalculadora.value += event.target.id.replace("-pequena", "");
-        } else { inputCalculadora.value += event.target.id }
-      }
+      if ((!muitaPreguica.includes(teste[teste.length - 1]) && teste.length == 0 && (simbolo == "+" || simbolo == "-"))) {
+        inputCalculadora.value += simbolo;}
+      else if ((teste[teste.length - 1] == "(") && (simbolo == "+" || simbolo == "-")) {
+        inputCalculadora.value += event.target.id;}
       else if (!preguica.includes(teste[teste.length - 1])) {
-        if (event.target.id.includes("-pequena")) {
-          inputCalculadora.value += event.target.id.replace("-pequena", "");
-        } else { inputCalculadora.value += event.target.id }
-      }
+        inputCalculadora.value += event.target.id;}
       break;
 
     case "abre-parenteses":
@@ -287,94 +273,94 @@ function digitarSimbolo() {
     //Parte que entrega o resultado
     case "=":
     case "=-pequena":
-try {
-      let tamanho = inputCalculadora.value;
-      //Loops que vão verificar se os () estão todos fechados e vai fechar certinho caso estejam errados
+      try {
+        let tamanho = inputCalculadora.value;
+        //Loops que vão verificar se os () estão todos fechados e vai fechar certinho caso estejam errados
 
-function verificaParenteses () {
-      //Variáveis pra fazer a contagem dos ()
-      let verificaAbre = 0;
-      let verificaFecha = 0;
+        function verificaParenteses() {
+          //Variáveis pra fazer a contagem dos ()
+          let verificaAbre = 0;
+          let verificaFecha = 0;
 
-for (let i = 0; i < teste.length; i++) {
-        if (teste[i] == "(" && teste[i + 1] == ")") {
-          teste[i] = "";
-          teste[i + 1] = "";
-        }
-      }
-      
-      for (let i = 0; i < teste.length; i++) {
-
-        while (teste[teste.length - 1] == "(") {
-          teste.pop();
-          inputCalculadora.value = teste.join("");
-        }
-        inputCalculadora.value = teste.join("");
-      }
-
-      //loop que vai contar quantos tem de cada
-      for (let item of teste) {
-        if (item == "(") {
-          verificaAbre++;
-        } if (item == ")") {
-          verificaFecha++;
-        }
-      }
-
-      //Aqui ele verifica qual dos casos é:
-
-      //Se o "(" for maior, ele vai colocar ")" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
-      if (verificaAbre > verificaFecha) {
-        for (let i = 0; i < verificaAbre - verificaFecha; i++) {
-          teste.push(")");
-          inputCalculadora.value = teste.join("");
-        }
-
-        //Se o ")" for maior, ele vai colocar "(" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
-      } else {
-        for (let i = 0; i < verificaFecha - verificaAbre; i++) {
-          teste.unshift("(");
-          inputCalculadora.value = teste.join("");
-        }
-        for (let i = 0; i < teste.length; i++) {
-        if (teste[i] == "(" && teste[i + 1] == ")") {
-          teste[i] = "";
-          teste[i + 1] = "";
-        }
-      }
-      }
-}
-verificaParenteses();
-
-      //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
-      if (preguica.includes(teste[teste.length - 1])) {
-        teste.pop();
-        if (tamanho == Infinity) {
-          inputCalculadora.value = "Valor grande demais!";
-        } else {
           for (let i = 0; i < teste.length; i++) {
-            if (teste[i] == "%") {
-              teste[i] = "/100*";
-            };
+            if (teste[i] == "(" && teste[i + 1] == ")") {
+              teste[i] = "";
+              teste[i + 1] = "";
+            }
+          }
+
+          for (let i = 0; i < teste.length; i++) {
+
+            while (teste[teste.length - 1] == "(") {
+              teste.pop();
+              inputCalculadora.value = teste.join("");
+            }
             inputCalculadora.value = teste.join("");
           }
-        }
-      } else {
-        tamanho = math.evaluate(teste.join(""));
-        if (tamanho == Infinity) {
-          inputCalculadora.style.color = "red";
-          inputCalculadora.value = "Valor grande demais!";
-          setTimeout(() => {
-            inputCalculadora.style.color = "";
-            inputCalculadora.value = "";
-          }, 1000);
-        } else {
-          for (let i = 0; i < teste.length; i++) {
-            if (teste[i] == "%") {
-              teste[i] = "/100*";
-            };
-            verificaParenteses();
+
+          //loop que vai contar quantos tem de cada
+          for (let item of teste) {
+            if (item == "(") {
+              verificaAbre++;
+            } if (item == ")") {
+              verificaFecha++;
+            }
           }
+
+          //Aqui ele verifica qual dos casos é:
+
+          //Se o "(" for maior, ele vai colocar ")" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
+          if (verificaAbre > verificaFecha) {
+            for (let i = 0; i < verificaAbre - verificaFecha; i++) {
+              teste.push(")");
+              inputCalculadora.value = teste.join("");
+            }
+
+            //Se o ")" for maior, ele vai colocar "(" até ficarem com a mesma quantidade e depois só junta o array em string denovo pra fazer a conta no final do código
+          } else {
+            for (let i = 0; i < verificaFecha - verificaAbre; i++) {
+              teste.unshift("(");
+              inputCalculadora.value = teste.join("");
+            }
+            for (let i = 0; i < teste.length; i++) {
+              if (teste[i] == "(" && teste[i + 1] == ")") {
+                teste[i] = "";
+                teste[i + 1] = "";
+              }
+            }
+          }
+        }
+        verificaParenteses();
+
+        //Verifica se o ultimo elemento do input é um símbolo, se for, ele tira pra poder fazer a conta
+        if (preguica.includes(teste[teste.length - 1])) {
+          teste.pop();
+          if (tamanho == Infinity) {
+            inputCalculadora.value = "Valor grande demais!";
+          } else {
+            for (let i = 0; i < teste.length; i++) {
+              if (teste[i] == "%") {
+                teste[i] = "/100*";
+              };
+              inputCalculadora.value = teste.join("");
+            }
+          }
+        } else {
+          tamanho = math.evaluate(teste.join(""));
+          if (tamanho == Infinity) {
+            inputCalculadora.style.color = "red";
+            inputCalculadora.value = "Valor grande demais!";
+            setTimeout(() => {
+              inputCalculadora.style.color = "";
+              inputCalculadora.value = "";
+            }, 1000);
+          } else {
+            for (let i = 0; i < teste.length; i++) {
+              if (teste[i] == "%") {
+                teste[i] = "/100*";
+              };
+              verificaParenteses();
+            }
             if (inputCalculadora.value !== "") {
               salvar = inputCalculadora;
               createHistory();
@@ -383,26 +369,26 @@ verificaParenteses();
               inputCalculadora.value = "Insira algum valor!";
               inputCalculadora.style.color = "red";
               setTimeout(() => {
-            inputCalculadora.style.color = "";
-            inputCalculadora.value = "";
+                inputCalculadora.style.color = "";
+                inputCalculadora.value = "";
               }, 1000);
             }
+          }
         }
+      } catch {
+        inputCalculadora.value = "Escreva direito, por favor!";
+        inputCalculadora.style.color = "red";
+        setTimeout(() => {
+          inputCalculadora.value = "";
+          inputCalculadora.style.color = "";
+        }, 1000);
       }
-  } catch {
-    inputCalculadora.value = "Escreva direito, por favor!";
-    inputCalculadora.style.color = "red";
-    setTimeout(() => {
-    inputCalculadora.value = "";
-    inputCalculadora.style.color = "";
-    }, 1000);
   }
-}
 }
 
 //Função que abre e fecha a parte do histórico
 function showHistory() {
-  divHistorico.style.display=="block"?divHistorico.style.display="none":divHistorico.style.display="block";
+  divHistorico.style.display == "block" ? divHistorico.style.display = "none" : divHistorico.style.display = "block";
 }
 
 //Botões que fazem os números serem colocados no input da calculadora
