@@ -352,7 +352,7 @@
             }
 
             text-align: center;
-            padding: 2vw 1vw 4vw 1vw;
+            padding: 2vw 0vw 4vw 0vw;
             margin: 1vw 1.5vw;
             margin-bottom: 4vw;
             border-radius: 3vw;
@@ -367,7 +367,7 @@
             input {
                 border: none;
                 border-radius: 15px;
-                padding: 2vw 3vw;
+                padding: 2vw 1.5vw;
                 font-size: 6.3vw;
                 margin-bottom: 4vw;
             }
